@@ -1,0 +1,21 @@
+{
+    "extends": ["plugin:prettier/recommended"],
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-unused-vars": [
+        1,
+        { "argsIgnorePattern": "res|next|resolve|reject|^err" }
+      ],
+      "arrow-body-style": [2, "as-needed"],
+      "import/no-dynamic-require": "warn",
+      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+      "max-len": "off",
+      "no-underscore-dangle": "off",
+      "import/prefer-default-export": "off"
+    },
+    "plugins": ["import"],
+    "parser": "@babel/eslint-parser"
+  }

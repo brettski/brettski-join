@@ -1,0 +1,52 @@
+{
+  "name": "brettski-join",
+  "version": "0.1.0",
+  "description": "Discord bot join activity POC",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf __build__ && babel ./src -d ./__build__ --copy-files",
+    "postbuild": "cp .env package* __build__",
+    "predeploy:local": "npm run build",
+    "deploy:local": "cd ./__build__ && node index.js",
+    "start:watch": "nodemon -e env,js,json --watch src --ignore '*.test.js' --exec npm run deploy:local",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "lint": "eslint 'src/**/*.js'",
+    "validate": "concurrently npm:test npm:lint npm:build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brettski/brettski-join"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "webhook"
+  ],
+  "author": "brettski",
+  "license": "LGPL-3.0",
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "debug": "^4.3.4",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.22.20",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.22.20",
+    "concurrently": "^8.2.1",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jest": "^27.4.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "prettier-eslint": "^15.0.1",
+    "prettier-eslint-cli": "^7.1.0"
+  }
+}
