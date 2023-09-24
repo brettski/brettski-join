@@ -3,7 +3,8 @@ import { SlashCommandBuilder } from 'discord.js';
 export default {
   data: new SlashCommandBuilder()
     .setName('server')
-    .setDescription('Provides information about the server.'),
+    .setDescription('Provides information about the server.')
+    .setDMPermission(false),
   async execute(interaction) {
     // interaction.guild is the object representing the Guild in which the command was run
     await interaction.reply(
