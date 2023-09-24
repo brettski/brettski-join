@@ -1,12 +1,20 @@
 import 'dotenv/config';
 import { Client, Events, GatewayIntentBits, Collection } from 'discord.js';
+import debug from 'debug';
 
 import envConfig from './envConfig';
 import commands from './commands';
 
+const dlog = debug('brettski:*');
 const { botToken } = envConfig.discord;
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+});
 client.commands = new Collection();
 
 commands.forEach(command => {
@@ -45,6 +53,13 @@ client.on(Events.InteractionCreate, async interaction => {
         ephemeral: true,
       });
     }
+  }
+});
+
+client.on(Events.MessageCreate, message => {
+  const { webhookId, content } = message;
+  if (webhookId) {
+    dlog('message in!\n%O', content);
   }
 });
 

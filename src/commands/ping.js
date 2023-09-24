@@ -9,7 +9,6 @@ export default {
     const sent = await interaction.reply({
       content: 'Pinging...',
       fetchReply: true,
-      ephemeral: true,
     });
     interaction.editReply(
       `Roundtrip latency: ${
